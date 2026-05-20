@@ -221,6 +221,9 @@ footer{padding:var(--s-6) var(--pad-section-x);text-align:center;font-family:var
 </footer>
 
 <script>
+const SUPABASE_URL = 'https://svwjbdzttjilkwyokler.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2d2piZHp0dGppbGt3eW9rbGVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNDExMjYsImV4cCI6MjA5NDgxNzEyNn0.lIvI4eG4NWdh-cHPbQl9Vzcvt4QyFWrSENFLyxXk1NE';
+
 const QUESTIONS = [
   {
     category: 'S', categoryName: 'Systems',
@@ -479,11 +482,36 @@ function showResults() {
   document.getElementById('share-x').href = `https://x.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
   document.getElementById('share-li').href = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
 
-  document.getElementById('capture-form').addEventListener('submit', function(e) {
+  document.getElementById('capture-form').addEventListener('submit', async function(e) {
     e.preventDefault();
+    const btn = this.querySelector('button');
+    btn.textContent = 'SENDING...';
+    btn.disabled = true;
     const email = new FormData(this).get('email');
-    console.log('Scorecard capture:', { email, total, tier: tier.label, weakest: weakestCat, cats });
-    this.innerHTML = '<p class="capture-success">Check your inbox. Your full report is on the way.</p>';
+    try {
+      const res = await fetch(SUPABASE_URL + '/rest/v1/scorecard_leads', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          email,
+          score: total,
+          tier: tier.label,
+          weakest_category: weakestCat + ' — ' + CAT_FULL[weakestCat],
+          category_scores: cats
+        })
+      });
+      if (!res.ok) throw new Error('Submit failed');
+      this.innerHTML = '<p class="capture-success">Check your inbox. Your full report is on the way.</p>';
+    } catch (err) {
+      btn.textContent = 'SEND MY REPORT';
+      btn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
   });
 
   document.getElementById('retake-btn').addEventListener('click', function(e) {
