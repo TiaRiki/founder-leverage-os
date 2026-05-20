@@ -3,155 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SCALE Score &mdash; Find Your Bottleneck in 60 Seconds</title>
-<meta name="description" content="Paste your website. In 60 seconds, you'll know the single biggest system costing you 10+ hours a week of founder time.">
+<title>SCALE Score — Find Your Bottleneck in 24 Hours</title>
+<meta name="description" content="Paste your website. In 24 hours or less, you'll know the single biggest system costing you 10+ hours a week of founder time.">
 <meta property="og:title" content="You're the Bottleneck. This Shows You Exactly Where.">
-<meta property="og:description" content="Free diagnostic for agency founders and fractional execs doing $40K-$200K+/month.">
+<meta property="og:description" content="Free diagnostic for agency founders and fractional execs doing $40K–$200K+/month.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400;1,6..96,700&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0b0b0f;--text:#eceae4;--muted:#807d74;
-  --accent:#c49a2d;--accent-hover:#d4aa3c;
-  --border:#262420;--border-light:#1c1b18;
+/* ── DESIGN TOKENS ──────────────────────────────────────────────────── */
+:root {
+  --cream:#EFE7D6;--cream-soft:#F4ECDC;--cream-deep:#E6DFD0;--paper:#FBF8F1;
+  --navy:#15202B;--navy-deep:#0E1620;
+  --ink:#111110;--ink-soft:#2A2926;--ink-mute:rgba(17,17,16,0.55);
+  --accent:#E63A1B;--accent-deep:#B82B11;--accent-tint:rgba(230,58,27,0.10);
+  --gold:#C49A2B;
+  --display:"Bodoni Moda","Playfair Display","DM Serif Display",Georgia,serif;
+  --sans:"Geist","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --t-display-l:clamp(96px,12vw,180px);
+  --t-display-s:clamp(40px,4.6vw,72px);
+  --t-h1:44px;--t-h2:32px;--t-h3:24px;--t-h4:18px;
+  --t-body:16px;--t-small:14px;--t-meta:11px;--t-micro:10px;
+  --s-4:18px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;
+  --pad-section-x:40px;--pad-section-y:96px;
+  --radius:0px;
+  --rule:#111110;--rule-soft:rgba(17,17,16,0.18);--rule-onnavy:rgba(255,255,255,0.22);
+  --hairline:1px;
+  --track-display:-0.04em;--track-h:-0.02em;--track-mono:0.18em;--track-mono-tight:0.12em;
+  --lead-display:0.84;--lead-h:1.02;--lead-body:1.5;
 }
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
-::selection{background:var(--accent);color:var(--bg)}
+::selection{background:var(--accent);color:var(--paper)}
 
-.col{max-width:640px;margin:0 auto;padding:0 1.5rem}
-.col-wide{max-width:960px;margin:0 auto;padding:0 1.5rem}
-hr{border:none;border-top:1px solid var(--border-light);margin:0 auto;max-width:640px}
+/* ── BASE ───────────────────────────────────────────────────────────── */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","ss02";font-size:var(--t-body);line-height:var(--lead-body)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+hr{border:0;border-top:var(--hairline) solid var(--rule);margin:0}
+button{font:inherit}
 
-/* HERO */
-.hero{padding:9rem 0 5rem;text-align:center;animation:rise .8s ease both}
-@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.hero-label{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
-.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.2;margin-bottom:1.5rem;letter-spacing:-.01em}
-.hero h1 em{font-style:italic;font-weight:500}
-.hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 3rem;line-height:1.75}
+.display{font-family:var(--display);font-weight:500;line-height:var(--lead-display);letter-spacing:var(--track-display)}
+.mono{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase}
 
-/* FORM */
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
-.form-row input{background:transparent;border:none;border-bottom:1px solid var(--border);padding:.85rem 0;color:var(--text);font-family:inherit;font-size:1rem;outline:none;transition:border-color .2s;width:100%}
-.form-row input::placeholder{color:#4a4840}
-.form-row input:focus{border-bottom-color:var(--accent)}
-.hero button{display:block;width:100%;max-width:480px;margin:0 auto;background:var(--accent);color:var(--bg);border:none;padding:1rem 2rem;font-family:inherit;font-size:1rem;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:background .2s}
-.hero button:hover{background:var(--accent-hover)}
-.hero-note{font-size:.8rem;color:var(--muted);margin-top:1rem;opacity:.6;text-align:center}
+.eyebrow{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;display:inline-flex;align-items:center;gap:12px;color:var(--ink)}
+.eyebrow .rule-h{width:24px;height:1px;background:currentColor}
+.eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);display:inline-block}
 
-/* WHAT YOU GET */
-.wyg{padding:4.5rem 0}
-.wyg h2{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:700;margin-bottom:2rem}
-.wyg-list{list-style:none;counter-reset:wyg}
-.wyg-list li{counter-increment:wyg;padding:1rem 0;border-bottom:1px solid var(--border-light);font-size:1rem;color:var(--muted);display:flex;align-items:baseline;gap:1.25rem}
-.wyg-list li::before{content:counter(wyg,decimal-leading-zero);font-family:'Playfair Display',Georgia,serif;font-size:.9rem;color:var(--accent);flex-shrink:0;width:1.5rem}
-.wyg-list li:last-child{border-bottom:none}
+.section{padding:var(--pad-section-y) var(--pad-section-x);border-bottom:1px solid var(--ink);position:relative}
+.section.cream{background:var(--cream);color:var(--ink)}
+.section.navy{background:var(--navy);color:var(--paper)}
 
-/* SCALE */
-.scale-section{padding:4.5rem 0}
-.scale-label{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:2.5rem}
-.scale-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border-light);border:1px solid var(--border-light)}
-.scale-item{background:var(--bg);padding:2rem 1.25rem;text-align:center}
-.scale-letter{font-family:'Playfair Display',Georgia,serif;font-size:2rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.75rem}
-.scale-name{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
-.scale-desc{font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.55}
+.ghost-word{position:absolute;font-family:var(--display);font-weight:800;font-size:28vw;line-height:0.8;letter-spacing:-0.05em;color:rgba(255,255,255,0.05);pointer-events:none;white-space:nowrap;user-select:none}
 
-/* WHO */
-.who{padding:4rem 0 2rem;text-align:center}
-.who p{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;font-style:italic;color:var(--muted);max-width:580px;margin:0 auto;line-height:1.7}
+/* ── MASTHEAD ───────────────────────────────────────────────────────── */
+.mast{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--cream);padding:14px var(--pad-section-x);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;font-family:var(--mono);font-size:var(--t-meta);text-transform:uppercase;letter-spacing:var(--track-mono-tight)}
+.mast .left,.mast .right{display:flex;gap:28px}
+.mast .right{justify-content:flex-end}
+.mast .mark{font-family:var(--display);font-style:italic;font-size:26px;font-weight:500;letter-spacing:-0.01em;text-transform:none;line-height:1;white-space:nowrap}
+.mast .mark sup{font-family:var(--mono);font-size:10px;vertical-align:super;margin-left:4px;font-style:normal;letter-spacing:0.08em}
+.mast a:hover{color:var(--accent)}
 
-/* FOOTER */
-footer{padding:2.5rem 0;text-align:center;border-top:1px solid var(--border-light)}
-footer p{font-size:.8rem;color:var(--muted);letter-spacing:.02em}
+/* ── HERO ───────────────────────────────────────────────────────────── */
+.hero-inner{max-width:960px;margin:0 auto}
+.hero-kicker{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-soft);margin-bottom:var(--s-5)}
+.hero-headline{font-family:var(--display);font-weight:700;font-size:clamp(80px,14vw,200px);line-height:0.88;letter-spacing:var(--track-display);margin:0 0 var(--s-5)}
+.hero-headline .ital{font-style:italic;font-weight:400}
+.hero-headline .ac{color:var(--accent)}
+.hero-sub{font-family:var(--display);font-size:clamp(20px,2.4vw,28px);font-weight:400;line-height:1.25;letter-spacing:-0.01em;max-width:56ch;margin-bottom:var(--s-8);color:var(--ink-soft)}
+.hero-sub em{color:var(--accent);font-style:italic}
 
-/* SUCCESS */
-.success{text-align:center;padding:2rem 0}
-.success h3{font-family:'Playfair Display',Georgia,serif;font-size:1.4rem;margin-bottom:.5rem}
-.success p{color:var(--muted)}
+/* ── FORM ───────────────────────────────────────────────────────────── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;max-width:640px}
+.form-grid input{padding:16px 18px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--t-body);border-radius:0;outline:none;width:100%;transition:border-color 0.18s}
+.form-grid input::placeholder{color:var(--ink-mute)}
+.form-grid input:focus{border-color:var(--accent)}
+.form-btn{display:inline-flex;align-items:center;gap:12px;padding:16px 32px;font-family:var(--mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid var(--accent);background:var(--accent);color:var(--paper);cursor:pointer;border-radius:0;transition:background 0.18s}
+.form-btn:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+.form-btn .arr{font-family:var(--display);font-style:italic;font-size:18px;line-height:0}
+.form-note{font-family:var(--mono);font-size:var(--t-micro);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);margin-top:var(--s-4)}
 
-/* RESPONSIVE */
+/* ── SCALE GRID ─────────────────────────────────────────────────────── */
+.scale-head{text-align:center;margin-bottom:var(--s-8)}
+.scale-head .eyebrow{color:rgba(255,255,255,0.6)}
+.scale-head .eyebrow .dot{background:var(--accent)}
+.scale-grid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule-onnavy)}
+.scale-item{padding:var(--s-7) var(--s-5) var(--s-7) 0;border-right:1px solid var(--rule-onnavy)}
+.scale-item:last-child{border-right:none}
+.scale-letter{font-family:var(--display);font-style:italic;font-size:72px;font-weight:400;line-height:0.9;letter-spacing:-0.02em;color:var(--accent)}
+.scale-name{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;margin-top:var(--s-4);color:rgba(255,255,255,0.85)}
+.scale-desc{font-family:var(--sans);font-size:var(--t-small);line-height:1.5;margin-top:var(--s-4);color:rgba(255,255,255,0.5);font-style:italic}
+
+/* ── WHO ────────────────────────────────────────────────────────────── */
+.who-inner{max-width:680px;margin:0 auto;text-align:center}
+.who-inner p{font-family:var(--display);font-style:italic;font-size:clamp(18px,2.2vw,24px);font-weight:400;line-height:1.35;color:var(--ink-soft)}
+.who-inner .mark-star{color:var(--gold);font-family:var(--display);font-size:1.4em;line-height:0.5;vertical-align:-0.2em}
+
+/* ── FOOTER ─────────────────────────────────────────────────────────── */
+footer{padding:var(--s-6) var(--pad-section-x);text-align:center;font-family:var(--mono);font-size:var(--t-micro);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute)}
+
+/* ── SUCCESS ────────────────────────────────────────────────────────── */
+.success{padding:var(--s-7) 0}
+.success h3{font-family:var(--display);font-size:var(--t-h2);font-weight:600;letter-spacing:var(--track-h);margin:0 0 8px}
+.success p{color:var(--ink-soft);margin:0}
+
+/* ── RESPONSIVE ─────────────────────────────────────────────────────── */
 @media(max-width:768px){
-  .hero{padding:6rem 0 3.5rem}
-  .form-row{grid-template-columns:1fr}
-  .scale-grid{grid-template-columns:1fr;gap:0;border:none;background:transparent}
-  .scale-item{border-bottom:1px solid var(--border-light);padding:1.5rem 0;text-align:left;display:grid;grid-template-columns:2.5rem 1fr;gap:0 1rem;align-items:start}
-  .scale-letter{grid-row:1/3;align-self:center;font-size:1.75rem}
-  .scale-name{margin-bottom:.25rem}
-  .scale-desc{grid-column:2}
+  :root{--pad-section-x:20px;--pad-section-y:64px}
+  .mast{grid-template-columns:1fr;text-align:center;gap:8px}
+  .mast .left,.mast .right{display:none}
+  .form-grid{grid-template-columns:1fr}
+  .scale-grid{grid-template-columns:1fr;border-top:none}
+  .scale-item{border-right:none;border-bottom:1px solid var(--rule-onnavy);padding:var(--s-6) 0;display:grid;grid-template-columns:56px 1fr;gap:0 var(--s-5);align-items:start}
+  .scale-letter{grid-row:1/3;font-size:56px}
+  .scale-name{margin-top:0}
+  .scale-desc{grid-column:2;margin-top:6px}
   .scale-item:last-child{border-bottom:none}
-  .wyg,.scale-section{padding:3rem 0}
 }
 </style>
 </head>
 <body>
 
-<main>
-<section class="hero">
-  <div class="col">
-    <p class="hero-label">Free Diagnostic</p>
-    <h1>You&rsquo;re the Bottleneck.<br><em>This Shows You Exactly Where.</em></h1>
-    <p class="hero-sub">Paste your website. In 24 hours or less, you&rsquo;ll know the single biggest system costing you 10+ hours a week of founder time.</p>
+<!-- MASTHEAD -->
+<div class="mast">
+  <div class="left">
+    <span><span class="dot" style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;vertical-align:middle;margin-right:8px"></span>Free Diagnostic</span>
+    <span>MMXXVI</span>
+  </div>
+  <a href="#" class="mark">Founder Leverage<sup>OS</sup></a>
+  <div class="right">
+    <span>The SCALE Score</span>
+    <a href="#cta" style="color:var(--accent)">Apply &rarr;</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="section cream" style="padding-bottom:var(--s-9)">
+  <div class="hero-inner">
+    <p class="hero-kicker"><span class="dot" style="width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;vertical-align:middle;margin-right:8px"></span>Free Diagnostic &mdash; Operational Audit</p>
+    <h1 class="hero-headline"><span class="ac">Bottle</span><span class="ital">neck.</span></h1>
+    <p class="hero-sub">Paste your website. In 24 hours or less, you&rsquo;ll know <em>the single biggest system</em> costing you 10+ hours a week of founder time.</p>
     <form id="scale-form">
-      <div class="form-row">
+      <div class="form-grid">
         <input type="email" name="email" required placeholder="you@agency.com" autocomplete="email">
         <input type="url" name="website" required placeholder="https://youragency.com">
       </div>
-      <button type="submit">Show Me Where I&rsquo;m Stuck</button>
+      <button type="submit" class="form-btn">Show me where I&rsquo;m stuck <span class="arr">&rarr;</span></button>
+      <p class="form-note">Free. No call required. Results in your inbox.</p>
     </form>
-    <p class="hero-note">Free. No call required. Results in your inbox.</p>
   </div>
 </section>
 
-<hr>
-
-<section class="scale-section">
-  <div class="col-wide">
-    <p class="scale-label">The 5 dimensions we score</p>
-    <div class="scale-grid">
-      <div class="scale-item">
-        <div class="scale-letter">S</div>
-        <div class="scale-name">Systems</div>
-        <p class="scale-desc">11 tools. You use 30% of each one.</p>
-      </div>
-      <div class="scale-item">
-        <div class="scale-letter">C</div>
-        <div class="scale-name">Capacity</div>
-        <p class="scale-desc">Every deliverable still routes through you.</p>
-      </div>
-      <div class="scale-item">
-        <div class="scale-letter">A</div>
-        <div class="scale-name">Automation</div>
-        <p class="scale-desc">A Zapier graveyard and you know it.</p>
-      </div>
-      <div class="scale-item">
-        <div class="scale-letter">L</div>
-        <div class="scale-name">Leakage</div>
-        <p class="scale-desc">Clients slipping while you&rsquo;re too buried to notice.</p>
-      </div>
-      <div class="scale-item">
-        <div class="scale-letter">E</div>
-        <div class="scale-name">Experience</div>
-        <p class="scale-desc">Onboarding takes weeks. Should take days.</p>
-      </div>
+<!-- SCALE DIMENSIONS -->
+<section class="section navy" id="cta" style="overflow:hidden">
+  <div class="ghost-word" style="bottom:-0.15em;left:-2vw">SCALE</div>
+  <div class="scale-head">
+    <div class="eyebrow" style="color:rgba(255,255,255,0.6);justify-content:center"><span class="dot"></span><span class="rule-h" style="background:rgba(255,255,255,0.3)"></span>The 5 dimensions we score<span class="rule-h" style="background:rgba(255,255,255,0.3)"></span><span class="dot"></span></div>
+  </div>
+  <div class="scale-grid">
+    <div class="scale-item">
+      <div class="scale-letter">S</div>
+      <div class="scale-name">Systems</div>
+      <p class="scale-desc">11 tools. You use 30% of each one.</p>
+    </div>
+    <div class="scale-item">
+      <div class="scale-letter">C</div>
+      <div class="scale-name">Capacity</div>
+      <p class="scale-desc">Every deliverable still routes through you.</p>
+    </div>
+    <div class="scale-item">
+      <div class="scale-letter">A</div>
+      <div class="scale-name">Automation</div>
+      <p class="scale-desc">A Zapier graveyard and you know it.</p>
+    </div>
+    <div class="scale-item">
+      <div class="scale-letter">L</div>
+      <div class="scale-name">Leakage</div>
+      <p class="scale-desc">Clients slipping while you&rsquo;re too buried to notice.</p>
+    </div>
+    <div class="scale-item">
+      <div class="scale-letter">E</div>
+      <div class="scale-name">Experience</div>
+      <p class="scale-desc">Onboarding takes weeks. Should take days.</p>
     </div>
   </div>
 </section>
 
-<section class="who">
-  <div class="col">
-    <p>For agency founders and fractional executives doing $40K&ndash;$200K+/month who are done being the bottleneck.</p>
+<!-- WHO THIS IS FOR -->
+<section class="section cream" style="padding:var(--s-8) var(--pad-section-x)">
+  <div class="who-inner">
+    <p><span class="mark-star">&#x2731;</span> For agency founders and fractional executives doing $40K&ndash;$200K+/month who are done being the bottleneck.</p>
   </div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="col">
-    <p>Built by Artia Hawkins &ensp;|&ensp; Founder Leverage OS</p>
-  </div>
+  <p>Built by Artia Hawkins &ensp;&bull;&ensp; Founder Leverage OS</p>
 </footer>
-</main>
 
 <script>
 const SUPABASE_URL = 'https://svwjbdzttjilkwyokler.supabase.co';
@@ -160,7 +209,8 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 document.getElementById('scale-form').addEventListener('submit', async function(e) {
   e.preventDefault();
   const btn = this.querySelector('button');
-  btn.textContent = 'Submitting...';
+  const orig = btn.innerHTML;
+  btn.textContent = 'SUBMITTING...';
   btn.disabled = true;
 
   const data = Object.fromEntries(new FormData(this));
@@ -179,7 +229,7 @@ document.getElementById('scale-form').addEventListener('submit', async function(
     if (!res.ok) throw new Error('Submit failed');
     this.innerHTML = '<div class="success"><h3>Check your inbox in 24 hours.</h3><p>Your SCALE Score is being built right now.</p></div>';
   } catch (err) {
-    btn.textContent = 'Show Me Where I’m Stuck';
+    btn.innerHTML = orig;
     btn.disabled = false;
     alert('Something went wrong. Please try again.');
   }
