@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Founder Bottleneck Scorecard — How Stuck Are You?</title>
+<meta name="description" content="10 questions. 60 seconds. Find out exactly where your agency ops are breaking down across 5 SCALE dimensions.">
+<meta property="og:title" content="The Founder Bottleneck Scorecard">
+<meta property="og:description" content="10 questions. 60 seconds. Find out exactly where your agency ops are breaking down.">
+<meta property="og:image" content="https://founder-leverage-os.vercel.app/og-image.png">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,800;0,6..96,900;1,6..96,400;1,6..96,700&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#EFE7D6;--cream-soft:#F4ECDC;--cream-deep:#E6DFD0;--paper:#FBF8F1;
+  --navy:#15202B;--navy-deep:#0E1620;
+  --ink:#111110;--ink-soft:#2A2926;--ink-mute:rgba(17,17,16,0.55);
+  --accent:#E63A1B;--accent-deep:#B82B11;--accent-tint:rgba(230,58,27,0.10);
+  --gold:#C49A2B;
+  --display:"Bodoni Moda","Playfair Display","DM Serif Display",Georgia,serif;
+  --sans:"Geist","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  --t-display-l:clamp(96px,12vw,180px);
+  --t-display-s:clamp(40px,4.6vw,72px);
+  --t-h1:44px;--t-h2:32px;--t-h3:24px;--t-h4:18px;
+  --t-body:16px;--t-small:14px;--t-meta:11px;--t-micro:10px;
+  --s-4:18px;--s-5:24px;--s-6:32px;--s-7:48px;--s-8:64px;--s-9:96px;
+  --pad-section-x:40px;--pad-section-y:96px;
+  --radius:0px;
+  --rule:#111110;--rule-soft:rgba(17,17,16,0.18);--rule-onnavy:rgba(255,255,255,0.22);
+  --hairline:1px;
+  --track-display:-0.04em;--track-h:-0.02em;--track-mono:0.18em;--track-mono-tight:0.12em;
+  --lead-display:0.84;--lead-h:1.02;--lead-body:1.5;
+  --tier-critical:#E63A1B;--tier-stuck:#C49A2B;--tier-scaling:#3A7D44;--tier-dialed:#1B6FE6;
+}
+::selection{background:var(--accent);color:var(--paper)}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","ss02";font-size:var(--t-body);line-height:var(--lead-body)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+hr{border:0;border-top:var(--hairline) solid var(--rule);margin:0}
+button{font:inherit;cursor:pointer}
+
+/* MASTHEAD */
+.mast{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);background:var(--cream);padding:14px var(--pad-section-x);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;font-family:var(--mono);font-size:var(--t-meta);text-transform:uppercase;letter-spacing:var(--track-mono-tight)}
+.mast .left,.mast .right{display:flex;gap:28px}
+.mast .right{justify-content:flex-end}
+.mast .mark{font-family:var(--display);font-style:italic;font-size:26px;font-weight:500;letter-spacing:-0.01em;text-transform:none;line-height:1;white-space:nowrap}
+.mast .mark sup{font-family:var(--mono);font-size:10px;vertical-align:super;margin-left:4px;font-style:normal;letter-spacing:0.08em}
+.mast a:hover{color:var(--accent)}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;vertical-align:middle;margin-right:8px}
+
+/* INTRO */
+.intro{padding:var(--s-9) var(--pad-section-x) var(--s-8);text-align:center;max-width:720px;margin:0 auto}
+.intro-kicker{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);margin-bottom:var(--s-5)}
+.intro h1{font-family:var(--display);font-weight:700;font-size:clamp(36px,5vw,56px);line-height:1.05;letter-spacing:var(--track-h);margin:0 0 var(--s-5)}
+.intro h1 .ital{font-style:italic;font-weight:400}
+.intro h1 .ac{color:var(--accent)}
+.intro p{font-family:var(--sans);font-size:clamp(16px,1.6vw,20px);color:var(--ink-mute);line-height:1.6;max-width:48ch;margin:0 auto var(--s-7)}
+.start-btn{display:inline-flex;align-items:center;gap:12px;padding:16px 40px;font-family:var(--mono);font-size:12px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid var(--accent);background:var(--accent);color:var(--paper);border-radius:0;transition:background 0.18s}
+.start-btn:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+.start-btn .arr{font-family:var(--display);font-style:italic;font-size:18px;line-height:0}
+
+/* PROGRESS */
+.progress-wrap{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:1px solid var(--rule-soft);padding:16px var(--pad-section-x);display:none;align-items:center;gap:20px}
+.progress-wrap.active{display:flex}
+.progress-count{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);flex-shrink:0;min-width:60px}
+.progress-bar{flex:1;height:3px;background:var(--cream-deep);position:relative}
+.progress-fill{height:100%;background:var(--accent);transition:width 0.4s ease;width:0}
+
+/* QUIZ */
+.quiz-wrap{display:none;min-height:70vh;position:relative;overflow:hidden}
+.quiz-wrap.active{display:block}
+.question-slide{position:absolute;top:0;left:0;width:100%;padding:var(--s-9) var(--pad-section-x) var(--s-8);opacity:0;transform:translateX(60px);transition:opacity 0.4s ease,transform 0.4s ease;pointer-events:none}
+.question-slide.current{position:relative;opacity:1;transform:none;pointer-events:auto}
+.question-slide.exit-left{opacity:0;transform:translateX(-60px)}
+.q-inner{max-width:640px;margin:0 auto}
+.q-category{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--accent);margin-bottom:var(--s-4)}
+.q-text{font-family:var(--display);font-size:clamp(24px,3.2vw,36px);font-weight:500;line-height:1.2;letter-spacing:var(--track-h);margin-bottom:var(--s-7)}
+.q-options{display:flex;flex-direction:column;gap:12px}
+.q-option{display:block;padding:20px 24px;border:1px solid var(--rule-soft);background:var(--paper);cursor:pointer;transition:border-color 0.18s,background 0.18s;position:relative}
+.q-option:hover{border-color:var(--ink);background:var(--cream-soft)}
+.q-option.selected{border-color:var(--accent);background:var(--accent-tint)}
+.q-option input{position:absolute;opacity:0;pointer-events:none}
+.q-option-text{font-family:var(--sans);font-size:var(--t-body);line-height:1.5;color:var(--ink)}
+.q-option .q-score-hint{font-family:var(--mono);font-size:var(--t-micro);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);margin-top:4px}
+
+/* RESULTS */
+.results-wrap{display:none;padding:var(--s-8) var(--pad-section-x) var(--s-9)}
+.results-wrap.active{display:block;animation:fadeUp 0.6s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+.results-inner{max-width:720px;margin:0 auto}
+.results-header{text-align:center;margin-bottom:var(--s-6);padding-bottom:var(--s-6);border-bottom:1px solid var(--rule-soft)}
+.results-kicker{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);margin-bottom:var(--s-5)}
+.results-score{font-family:var(--display);font-size:clamp(72px,12vw,120px);font-weight:700;line-height:0.9;letter-spacing:var(--track-display);margin-bottom:8px}
+.results-max{font-family:var(--mono);font-size:var(--t-small);letter-spacing:var(--track-mono-tight);color:var(--ink-mute);margin-bottom:var(--s-5)}
+.results-tier{font-family:var(--display);font-size:clamp(24px,3vw,36px);font-weight:500;font-style:italic;line-height:1.2;margin-bottom:var(--s-4)}
+.results-msg{font-family:var(--sans);font-size:var(--t-body);color:var(--ink-mute);line-height:1.6;max-width:52ch;margin:0 auto}
+
+/* CATEGORY BREAKDOWN */
+.breakdown{margin-bottom:var(--s-8)}
+.breakdown-title{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);text-align:center;margin-bottom:var(--s-6)}
+.cat-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--rule-soft);border:1px solid var(--rule-soft)}
+.cat-card{background:var(--cream);padding:var(--s-6) var(--s-4);text-align:center}
+.cat-letter{font-family:var(--display);font-style:italic;font-size:40px;font-weight:400;line-height:0.9;margin-bottom:8px}
+.cat-name{font-family:var(--mono);font-size:var(--t-micro);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);margin-bottom:12px}
+.cat-score-bar{height:4px;background:var(--cream-deep);margin:0 auto 8px;max-width:64px}
+.cat-score-fill{height:100%;transition:width 0.6s ease}
+.cat-score-num{font-family:var(--mono);font-size:var(--t-small);letter-spacing:var(--track-mono-tight);font-weight:600}
+
+/* WEAKEST CALLOUT */
+.weakest{background:var(--navy);color:var(--paper);padding:var(--s-7) var(--s-6);margin-bottom:var(--s-8);text-align:center}
+.weakest-label{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:var(--s-4)}
+.weakest-cat{font-family:var(--display);font-style:italic;font-size:var(--t-h2);font-weight:500;color:var(--accent);margin-bottom:8px}
+.weakest-desc{font-family:var(--sans);font-size:var(--t-small);color:rgba(255,255,255,0.6);line-height:1.6;max-width:48ch;margin:0 auto}
+
+/* EMAIL CAPTURE */
+.capture{background:var(--paper);border:1px solid var(--rule-soft);padding:var(--s-7) var(--s-6);margin-bottom:var(--s-7);text-align:center}
+.capture h3{font-family:var(--display);font-size:var(--t-h3);font-weight:600;letter-spacing:var(--track-h);margin:0 0 8px}
+.capture p{font-family:var(--sans);font-size:var(--t-small);color:var(--ink-mute);margin:0 0 var(--s-5)}
+.capture-form{display:flex;gap:12px;max-width:480px;margin:0 auto}
+.capture-form input{flex:1;padding:14px 16px;border:1px solid var(--ink);background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:var(--t-body);outline:none;border-radius:0}
+.capture-form input::placeholder{color:var(--ink-mute)}
+.capture-form input:focus{border-color:var(--accent)}
+.capture-form button{padding:14px 28px;font-family:var(--mono);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid var(--accent);background:var(--accent);color:var(--paper);border-radius:0;transition:background 0.18s;white-space:nowrap}
+.capture-form button:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+.capture-success{font-family:var(--sans);font-size:var(--t-body);color:var(--accent)}
+
+/* SHARE */
+.share{text-align:center;margin-bottom:var(--s-7)}
+.share-label{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);margin-bottom:var(--s-4)}
+.share-btns{display:flex;gap:12px;justify-content:center}
+.share-btn{padding:12px 24px;font-family:var(--mono);font-size:var(--t-micro);letter-spacing:var(--track-mono);text-transform:uppercase;border:1px solid var(--ink);background:transparent;color:var(--ink);transition:background 0.18s,color 0.18s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.share-btn:hover{background:var(--ink);color:var(--paper)}
+
+/* RETAKE */
+.retake{text-align:center;padding-top:var(--s-6);border-top:1px solid var(--rule-soft)}
+.retake a{font-family:var(--mono);font-size:var(--t-meta);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);border-bottom:1px solid var(--rule-soft);padding-bottom:2px;transition:color 0.18s}
+.retake a:hover{color:var(--accent)}
+
+/* FOOTER */
+footer{padding:var(--s-6) var(--pad-section-x);text-align:center;font-family:var(--mono);font-size:var(--t-micro);letter-spacing:var(--track-mono);text-transform:uppercase;color:var(--ink-mute);border-top:1px solid var(--rule-soft)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  :root{--pad-section-x:20px;--pad-section-y:56px}
+  .mast{grid-template-columns:1fr;text-align:center;gap:8px;padding:12px var(--pad-section-x)}
+  .mast .left,.mast .right{display:none}
+  .intro{padding:var(--s-8) var(--pad-section-x) var(--s-7)}
+  .intro h1{font-size:clamp(30px,7vw,44px)}
+  .question-slide{padding:var(--s-7) var(--pad-section-x) var(--s-7)}
+  .q-text{font-size:clamp(22px,5vw,30px)}
+  .q-option{padding:16px 18px}
+  .cat-grid{grid-template-columns:1fr;gap:0;border:none;background:transparent}
+  .cat-card{border-bottom:1px solid var(--rule-soft);display:grid;grid-template-columns:48px 1fr auto;gap:0 16px;align-items:center;text-align:left;padding:var(--s-5) 0}
+  .cat-card:last-child{border-bottom:none}
+  .cat-letter{margin-bottom:0}
+  .cat-name{margin-bottom:0}
+  .cat-score-bar{display:none}
+  .cat-score-num{font-size:var(--t-body)}
+  .capture-form{flex-direction:column}
+  .capture-form button{width:100%}
+  .share-btns{flex-direction:column;align-items:center}
+  .share-btn{width:100%;justify-content:center;max-width:320px}
+  .results-wrap{padding:var(--s-7) var(--pad-section-x) var(--s-8)}
+  .weakest{padding:var(--s-6) var(--s-5)}
+  .capture{padding:var(--s-6) var(--s-5)}
+  .progress-wrap{padding:12px var(--pad-section-x)}
+}
+@media(max-width:420px){
+  :root{--pad-section-x:16px;--pad-section-y:48px}
+  .intro h1{font-size:clamp(26px,7vw,36px)}
+  .mast .mark{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="mast">
+  <div class="left">
+    <span><span class="dot"></span>Scorecard</span>
+    <span>60 Seconds</span>
+  </div>
+  <a href="/" class="mark">Founder Leverage<sup>OS</sup></a>
+  <div class="right">
+    <span>10 Questions</span>
+    <a href="/" style="color:var(--accent)">Get Your SCALE Score &rarr;</a>
+  </div>
+</div>
+
+<!-- INTRO -->
+<section class="intro" id="intro-section">
+  <p class="intro-kicker"><span class="dot"></span>Free &mdash; 60 Second Diagnostic</p>
+  <h1>The Founder<br><span class="ac">Bottleneck</span> <span class="ital">Scorecard</span></h1>
+  <p>10 questions. 5 operational dimensions. Find out exactly where your agency ops are breaking down&mdash;and what to fix first.</p>
+  <button class="start-btn" id="start-btn">Start the Scorecard <span class="arr">&rarr;</span></button>
+</section>
+
+<hr>
+
+<!-- PROGRESS BAR -->
+<div class="progress-wrap" id="progress">
+  <span class="progress-count" id="progress-count">01 / 10</span>
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+</div>
+
+<!-- QUIZ -->
+<div class="quiz-wrap" id="quiz"></div>
+
+<!-- RESULTS -->
+<div class="results-wrap" id="results"></div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by <a href="https://www.linkedin.com/in/artiahawkins/" target="_blank" rel="noopener" style="border-bottom:1px solid var(--rule-soft)">Artia Hawkins</a> &ensp;&bull;&ensp; Founder Leverage OS</p>
+</footer>
+
+<script>
+const QUESTIONS = [
+  {
+    category: 'S', categoryName: 'Systems',
+    text: 'How many tools does your team use to manage a single client?',
+    options: [
+      { label: '5+ tools, most barely configured', score: 0 },
+      { label: '3–4 tools with some overlap', score: 1 },
+      { label: '1–2 tools that handle everything we need', score: 2 }
+    ]
+  },
+  {
+    category: 'S', categoryName: 'Systems',
+    text: 'When a new team member starts, how long until they can navigate your tool stack independently?',
+    options: [
+      { label: 'Weeks—there’s no documentation', score: 0 },
+      { label: 'A few days with hand-holding', score: 1 },
+      { label: 'Day one—SOPs and templates are ready', score: 2 }
+    ]
+  },
+  {
+    category: 'C', categoryName: 'Capacity',
+    text: 'What happens to client work when you take a day off?',
+    options: [
+      { label: 'It stalls—I’m the only one who can do it', score: 0 },
+      { label: 'Most things continue, but decisions wait', score: 1 },
+      { label: 'Nobody notices I’m gone', score: 2 }
+    ]
+  },
+  {
+    category: 'C', categoryName: 'Capacity',
+    text: 'How much of your week is spent on work only you can do?',
+    options: [
+      { label: 'Less than 20%—I’m buried in ops', score: 0 },
+      { label: 'About half—still too much admin', score: 1 },
+      { label: '80%+ is strategic or revenue-generating', score: 2 }
+    ]
+  },
+  {
+    category: 'A', categoryName: 'Automation',
+    text: 'How do you handle repetitive tasks like status updates, invoicing, or reporting?',
+    options: [
+      { label: 'Manually, every single time', score: 0 },
+      { label: 'Some automations exist but they break often', score: 1 },
+      { label: 'Fully automated—runs without me', score: 2 }
+    ]
+  },
+  {
+    category: 'A', categoryName: 'Automation',
+    text: 'If you opened your Zapier/Make/n8n dashboard right now, what would you find?',
+    options: [
+      { label: 'I don’t have one—or it’s a graveyard', score: 0 },
+      { label: 'A few active workflows, mostly forgotten', score: 1 },
+      { label: 'Clean, documented automations that I trust', score: 2 }
+    ]
+  },
+  {
+    category: 'L', categoryName: 'Leakage',
+    text: 'In the last 90 days, has a client churned or complained about something you should have caught earlier?',
+    options: [
+      { label: 'Yes—more than once', score: 0 },
+      { label: 'Once, but it was a wake-up call', score: 1 },
+      { label: 'No—we catch issues before clients feel them', score: 2 }
+    ]
+  },
+  {
+    category: 'L', categoryName: 'Leakage',
+    text: 'How do you track whether clients are getting results (not just deliverables)?',
+    options: [
+      { label: 'We don’t—we deliver and move on', score: 0 },
+      { label: 'Occasional check-ins, nothing systematic', score: 1 },
+      { label: 'Dashboards or reports tied to client KPIs', score: 2 }
+    ]
+  },
+  {
+    category: 'E', categoryName: 'Experience',
+    text: 'How long does it take to fully onboard a new client from signed contract to first deliverable?',
+    options: [
+      { label: '3+ weeks—it’s a scramble every time', score: 0 },
+      { label: '1–2 weeks with a loose process', score: 1 },
+      { label: 'Under a week—templated and tight', score: 2 }
+    ]
+  },
+  {
+    category: 'E', categoryName: 'Experience',
+    text: 'How would a client describe working with you?',
+    options: [
+      { label: '“Great work, but hard to get updates.”', score: 0 },
+      { label: '“Solid, but I sometimes have to chase them.”', score: 1 },
+      { label: '“Seamless. I always know what’s happening.”', score: 2 }
+    ]
+  }
+];
+
+const TIERS = [
+  { min: 0,  max: 5,  label: 'Critical Bottleneck', color: 'var(--tier-critical)', msg: 'You are the single point of failure in your business. Every deliverable, every decision, every client touchpoint runs through you. This isn’t sustainable—and it’s likely already costing you clients and revenue.' },
+  { min: 6,  max: 10, label: 'Stuck & Scaling', color: 'var(--tier-stuck)', msg: 'You’ve built something real, but your operations can’t keep up with your ambition. You’re working in the business when you should be working on it. A few key systems could free up 10+ hours a week.' },
+  { min: 11, max: 15, label: 'Scaling With Friction', color: 'var(--tier-scaling)', msg: 'You’re ahead of most founders. The foundation is there, but friction points are slowing you down and eating margin. Targeted improvements in your weakest dimension will unlock your next phase of growth.' },
+  { min: 16, max: 20, label: 'Dialed In', color: 'var(--tier-dialed)', msg: 'Your operations are running clean. Clients are happy, your team can execute without you, and your systems actually work. You’re in the top 10% of agency operators.' }
+];
+
+const CAT_FULL = { S: 'Systems', C: 'Capacity', A: 'Automation', L: 'Leakage', E: 'Experience' };
+const CAT_WEAKNESS = {
+  S: 'Your tool stack is working against you. Consolidate, configure, and document.',
+  C: 'You’re still the bottleneck on too many deliverables. Delegate or die.',
+  A: 'Manual work is eating your margin. Automate the repetitive before it buries you.',
+  L: 'Clients are slipping through the cracks. Build early-warning systems now.',
+  E: 'Your client experience has friction that’s costing trust and referrals.'
+};
+
+let answers = [];
+let currentQ = 0;
+
+function init() {
+  const quiz = document.getElementById('quiz');
+  QUESTIONS.forEach((q, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'question-slide' + (i === 0 ? ' current' : '');
+    slide.dataset.index = i;
+    slide.innerHTML = `
+      <div class="q-inner">
+        <div class="q-category"><span class="dot"></span>${q.category} — ${q.categoryName}</div>
+        <h2 class="q-text">${q.text}</h2>
+        <div class="q-options">
+          ${q.options.map((o, oi) => `
+            <label class="q-option" data-q="${i}" data-score="${o.score}">
+              <input type="radio" name="q${i}" value="${o.score}">
+              <span class="q-option-text">${o.label}</span>
+            </label>
+          `).join('')}
+        </div>
+      </div>
+    `;
+    quiz.appendChild(slide);
+  });
+
+  quiz.addEventListener('click', function(e) {
+    const option = e.target.closest('.q-option');
+    if (!option) return;
+    const qi = parseInt(option.dataset.q);
+    const score = parseInt(option.dataset.score);
+    option.closest('.q-options').querySelectorAll('.q-option').forEach(o => o.classList.remove('selected'));
+    option.classList.add('selected');
+    option.querySelector('input').checked = true;
+    answers[qi] = score;
+    setTimeout(() => advance(qi), 350);
+  });
+}
+
+function advance(fromIndex) {
+  if (fromIndex < QUESTIONS.length - 1) {
+    const slides = document.querySelectorAll('.question-slide');
+    slides[fromIndex].classList.remove('current');
+    slides[fromIndex].classList.add('exit-left');
+    currentQ = fromIndex + 1;
+    slides[currentQ].classList.add('current');
+    updateProgress(currentQ);
+  } else {
+    showResults();
+  }
+}
+
+function updateProgress(idx) {
+  document.getElementById('progress-count').textContent =
+    String(idx + 1).padStart(2, '0') + ' / ' + String(QUESTIONS.length).padStart(2, '0');
+  document.getElementById('progress-fill').style.width = ((idx + 1) / QUESTIONS.length * 100) + '%';
+}
+
+function showResults() {
+  document.getElementById('quiz').classList.remove('active');
+  document.getElementById('progress').classList.remove('active');
+
+  const total = answers.reduce((a, b) => a + b, 0);
+  const tier = TIERS.find(t => total >= t.min && total <= t.max);
+
+  const cats = {};
+  QUESTIONS.forEach((q, i) => {
+    if (!cats[q.category]) cats[q.category] = 0;
+    cats[q.category] += (answers[i] || 0);
+  });
+
+  let weakestCat = null, weakestScore = Infinity;
+  for (const c in cats) {
+    if (cats[c] < weakestScore) { weakestScore = cats[c]; weakestCat = c; }
+  }
+
+  const resultsEl = document.getElementById('results');
+  resultsEl.innerHTML = `
+    <div class="results-inner">
+      <div class="results-header">
+        <p class="results-kicker"><span class="dot"></span>Your Bottleneck Scorecard</p>
+        <div class="results-score" style="color:${tier.color}">${total}</div>
+        <div class="results-max">out of 20</div>
+        <div class="results-tier" style="color:${tier.color}">${tier.label}</div>
+        <p class="results-msg">${tier.msg}</p>
+      </div>
+
+      <div class="breakdown">
+        <p class="breakdown-title">Category Breakdown</p>
+        <div class="cat-grid">
+          ${['S','C','A','L','E'].map(c => {
+            const s = cats[c] || 0;
+            const pct = (s / 4) * 100;
+            const color = c === weakestCat ? 'var(--accent)' : 'var(--ink)';
+            return `
+              <div class="cat-card">
+                <div class="cat-letter" style="color:${color}">${c}</div>
+                <div class="cat-name">${CAT_FULL[c]}</div>
+                <div class="cat-score-bar"><div class="cat-score-fill" style="width:${pct}%;background:${color}"></div></div>
+                <div class="cat-score-num" style="color:${color}">${s}/4</div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      </div>
+
+      <div class="weakest">
+        <p class="weakest-label">Your Biggest Bottleneck</p>
+        <p class="weakest-cat">${weakestCat} — ${CAT_FULL[weakestCat]}</p>
+        <p class="weakest-desc">${CAT_WEAKNESS[weakestCat]}</p>
+      </div>
+
+      <div class="capture" id="capture">
+        <h3>Want the full breakdown?</h3>
+        <p>Get your personalized SCALE Score report with specific fixes for your weakest dimension.</p>
+        <form class="capture-form" id="capture-form">
+          <input type="email" name="email" required placeholder="you@agency.com" autocomplete="email">
+          <button type="submit">Send My Report</button>
+        </form>
+      </div>
+
+      <div class="share">
+        <p class="share-label">Share Your Score</p>
+        <div class="share-btns">
+          <a class="share-btn" id="share-x" href="#" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Post on X
+          </a>
+          <a class="share-btn" id="share-li" href="#" target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Share on LinkedIn
+          </a>
+        </div>
+      </div>
+
+      <div class="retake">
+        <a href="#" id="retake-btn">&larr; Retake the Scorecard</a>
+      </div>
+    </div>
+  `;
+
+  resultsEl.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+  const shareText = encodeURIComponent(`I scored ${total}/20 on the Founder Bottleneck Scorecard. My biggest bottleneck: ${CAT_FULL[weakestCat]}. Take yours:`);
+  const shareUrl = encodeURIComponent('https://founder-leverage-os.vercel.app/scorecard.html');
+  document.getElementById('share-x').href = `https://x.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
+  document.getElementById('share-li').href = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
+
+  document.getElementById('capture-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = new FormData(this).get('email');
+    console.log('Scorecard capture:', { email, total, tier: tier.label, weakest: weakestCat, cats });
+    this.innerHTML = '<p class="capture-success">Check your inbox. Your full report is on the way.</p>';
+  });
+
+  document.getElementById('retake-btn').addEventListener('click', function(e) {
+    e.preventDefault();
+    answers = [];
+    currentQ = 0;
+    resultsEl.classList.remove('active');
+    resultsEl.innerHTML = '';
+    document.getElementById('intro-section').style.display = '';
+    document.getElementById('quiz').classList.remove('active');
+    document.getElementById('quiz').innerHTML = '';
+    document.getElementById('progress').classList.remove('active');
+    document.getElementById('progress-fill').style.width = '0';
+    init();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+document.getElementById('start-btn').addEventListener('click', function() {
+  document.getElementById('intro-section').style.display = 'none';
+  document.getElementById('quiz').classList.add('active');
+  document.getElementById('progress').classList.add('active');
+  updateProgress(0);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+init();
+</script>
+</body>
+</html>
