@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCALE Score &mdash; Find Your Bottleneck in 60 Seconds</title>
+<meta name="description" content="Paste your website. In 60 seconds, you'll know the single biggest system costing you 10+ hours a week of founder time.">
+<meta property="og:title" content="You're the Bottleneck. This Shows You Exactly Where.">
+<meta property="og:description" content="Free diagnostic for agency founders and fractional execs doing $40K-$200K+/month.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0b0b0f;--text:#eceae4;--muted:#807d74;
+  --accent:#c49a2d;--accent-hover:#d4aa3c;
+  --border:#262420;--border-light:#1c1b18;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--bg)}
+
+.col{max-width:640px;margin:0 auto;padding:0 1.5rem}
+.col-wide{max-width:960px;margin:0 auto;padding:0 1.5rem}
+hr{border:none;border-top:1px solid var(--border-light);margin:0 auto;max-width:640px}
+
+/* HERO */
+.hero{padding:9rem 0 5rem;text-align:center;animation:rise .8s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.hero-label{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.hero h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2.2rem,5vw,3.4rem);font-weight:700;line-height:1.2;margin-bottom:1.5rem;letter-spacing:-.01em}
+.hero h1 em{font-style:italic;font-weight:500}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:520px;margin:0 auto 3rem;line-height:1.75}
+
+/* FORM */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.25rem}
+.form-row input{background:transparent;border:none;border-bottom:1px solid var(--border);padding:.85rem 0;color:var(--text);font-family:inherit;font-size:1rem;outline:none;transition:border-color .2s;width:100%}
+.form-row input::placeholder{color:#4a4840}
+.form-row input:focus{border-bottom-color:var(--accent)}
+.hero button{display:block;width:100%;max-width:480px;margin:0 auto;background:var(--accent);color:var(--bg);border:none;padding:1rem 2rem;font-family:inherit;font-size:1rem;font-weight:600;letter-spacing:.02em;cursor:pointer;transition:background .2s}
+.hero button:hover{background:var(--accent-hover)}
+.hero-note{font-size:.8rem;color:var(--muted);margin-top:1rem;opacity:.6;text-align:center}
+
+/* WHAT YOU GET */
+.wyg{padding:4.5rem 0}
+.wyg h2{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;font-weight:700;margin-bottom:2rem}
+.wyg-list{list-style:none;counter-reset:wyg}
+.wyg-list li{counter-increment:wyg;padding:1rem 0;border-bottom:1px solid var(--border-light);font-size:1rem;color:var(--muted);display:flex;align-items:baseline;gap:1.25rem}
+.wyg-list li::before{content:counter(wyg,decimal-leading-zero);font-family:'Playfair Display',Georgia,serif;font-size:.9rem;color:var(--accent);flex-shrink:0;width:1.5rem}
+.wyg-list li:last-child{border-bottom:none}
+
+/* SCALE */
+.scale-section{padding:4.5rem 0}
+.scale-label{font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);text-align:center;margin-bottom:2.5rem}
+.scale-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border-light);border:1px solid var(--border-light)}
+.scale-item{background:var(--bg);padding:2rem 1.25rem;text-align:center}
+.scale-letter{font-family:'Playfair Display',Georgia,serif;font-size:2rem;font-weight:700;color:var(--accent);line-height:1;margin-bottom:.75rem}
+.scale-name{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.75rem}
+.scale-desc{font-size:.82rem;color:var(--muted);font-style:italic;line-height:1.55}
+
+/* WHO */
+.who{padding:4rem 0 2rem;text-align:center}
+.who p{font-family:'Playfair Display',Georgia,serif;font-size:1.15rem;font-style:italic;color:var(--muted);max-width:580px;margin:0 auto;line-height:1.7}
+
+/* FOOTER */
+footer{padding:2.5rem 0;text-align:center;border-top:1px solid var(--border-light)}
+footer p{font-size:.8rem;color:var(--muted);letter-spacing:.02em}
+
+/* SUCCESS */
+.success{text-align:center;padding:2rem 0}
+.success h3{font-family:'Playfair Display',Georgia,serif;font-size:1.4rem;margin-bottom:.5rem}
+.success p{color:var(--muted)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .hero{padding:6rem 0 3.5rem}
+  .form-row{grid-template-columns:1fr}
+  .scale-grid{grid-template-columns:1fr;gap:0;border:none;background:transparent}
+  .scale-item{border-bottom:1px solid var(--border-light);padding:1.5rem 0;text-align:left;display:grid;grid-template-columns:2.5rem 1fr;gap:0 1rem;align-items:start}
+  .scale-letter{grid-row:1/3;align-self:center;font-size:1.75rem}
+  .scale-name{margin-bottom:.25rem}
+  .scale-desc{grid-column:2}
+  .scale-item:last-child{border-bottom:none}
+  .wyg,.scale-section{padding:3rem 0}
+}
+</style>
+</head>
+<body>
+
+<main>
+<section class="hero">
+  <div class="col">
+    <p class="hero-label">Free Diagnostic</p>
+    <h1>You&rsquo;re the Bottleneck.<br><em>This Shows You Exactly Where.</em></h1>
+    <p class="hero-sub">Paste your website. In 60 seconds, you&rsquo;ll know the single biggest system costing you 10+ hours a week of founder time.</p>
+    <form id="scale-form">
+      <div class="form-row">
+        <input type="email" name="email" required placeholder="you@agency.com" autocomplete="email">
+        <input type="url" name="website" required placeholder="https://youragency.com">
+      </div>
+      <button type="submit">Show Me Where I&rsquo;m Stuck</button>
+    </form>
+    <p class="hero-note">Free. No call required. Results in your inbox.</p>
+  </div>
+</section>
+
+<hr>
+
+<section class="wyg">
+  <div class="col">
+    <h2>What You&rsquo;ll Get</h2>
+    <ol class="wyg-list">
+      <li>Your SCALE Score across 5 operational dimensions</li>
+      <li>The single biggest bottleneck in your delivery ops</li>
+      <li>The specific system that eliminates it</li>
+      <li>A personalized report&mdash;not a template</li>
+    </ol>
+  </div>
+</section>
+
+<hr>
+
+<section class="scale-section">
+  <div class="col-wide">
+    <p class="scale-label">The 5 dimensions we score</p>
+    <div class="scale-grid">
+      <div class="scale-item">
+        <div class="scale-letter">S</div>
+        <div class="scale-name">Systems</div>
+        <p class="scale-desc">Your tool stack is working against you</p>
+      </div>
+      <div class="scale-item">
+        <div class="scale-letter">C</div>
+        <div class="scale-name">Capacity</div>
+        <p class="scale-desc">Your calendar IS your project management system</p>
+      </div>
+      <div class="scale-item">
+        <div class="scale-letter">A</div>
+        <div class="scale-name">Automation</div>
+        <p class="scale-desc">You have a Zapier graveyard and you know it</p>
+      </div>
+      <div class="scale-item">
+        <div class="scale-letter">L</div>
+        <div class="scale-name">Leakage</div>
+        <p class="scale-desc">Clients are slipping and you&rsquo;re too busy to notice</p>
+      </div>
+      <div class="scale-item">
+        <div class="scale-letter">E</div>
+        <div class="scale-name">Experience</div>
+        <p class="scale-desc">Onboarding takes weeks when it should take days</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="who">
+  <div class="col">
+    <p>For agency founders and fractional executives doing $40K&ndash;$200K+/month who are done being the bottleneck.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="col">
+    <p>Built by Artia Hawkins &ensp;|&ensp; Founder Leverage OS</p>
+  </div>
+</footer>
+</main>
+
+<script>
+document.getElementById('scale-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(this));
+  console.log('SCALE form submission:', data);
+
+  // POST to your webhook when ready:
+  // fetch('https://YOUR-WEBHOOK-URL', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(data)
+  // });
+
+  this.innerHTML = '<div class="success"><h3>Check your inbox.</h3><p>Your SCALE Score is on the way.</p></div>';
+});
+</script>
+</body>
+</html>
