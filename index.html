@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Founder Leverage OS — Stop Being the Bottleneck</title>
+<meta name="description" content="Add 2-3 clients without adding hours or headcount. We install the Founder Leverage OS inside your existing tools so your delivery ops run without you.">
+<meta property="og:title" content="Founder Leverage OS">
+<meta property="og:description" content="Add 2-3 clients without adding hours or headcount. Systems installed inside your existing tools.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#08080a;--surface:#111114;--surface-2:#18181c;
+  --border:#1e1e25;--text:#ededf0;--muted:#71717a;
+  --accent:#c5a028;--accent-hover:#d4af37;
+  --accent-glow:rgba(197,160,40,0.10);--accent-border:rgba(197,160,40,0.25);
+  --radius:8px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.container{max-width:1140px;margin:0 auto;padding:0 1.5rem}
+.eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+.section{padding:6rem 0}
+.section-divider{width:48px;height:2px;background:var(--accent);margin:0 auto 1rem;border-radius:1px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 0;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(8,8,10,0.92);backdrop-filter:blur(16px);border-bottom-color:var(--border)}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-size:.85rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
+.nav-cta{font-size:.85rem;font-weight:600;color:var(--accent);border:1px solid var(--accent-border);padding:.55rem 1.25rem;border-radius:var(--radius);transition:all .2s}
+.nav-cta:hover{background:var(--accent);color:var(--bg)}
+
+/* HERO */
+.hero{position:relative;padding:10rem 0 6rem;overflow:hidden;text-align:center}
+.hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse,var(--accent-glow) 0%,transparent 65%);pointer-events:none}
+.hero-eyebrow{font-size:.8rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.hero h1{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:800;line-height:1.15;margin-bottom:1.5rem;letter-spacing:-.02em}
+.hero h1 span{display:block;color:var(--accent)}
+.hero-sub{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 auto 2.5rem;line-height:1.7}
+.btn{display:inline-block;font-size:1rem;font-weight:600;padding:.9rem 2rem;border-radius:var(--radius);border:none;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn-primary{background:var(--accent);color:var(--bg)}
+.btn-primary:hover{background:var(--accent-hover);transform:translateY(-1px)}
+.hero-micro{font-size:.85rem;color:var(--muted);margin-top:1rem;opacity:.75}
+
+/* PROBLEM */
+.problem{background:var(--surface)}
+.problem h2{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:700;text-align:center;max-width:700px;margin:0 auto 3.5rem;line-height:1.3}
+.pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.pain-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:2rem}
+.pain-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.6rem}
+.pain-card p{font-size:.95rem;color:var(--muted);line-height:1.65}
+
+/* SOLUTION */
+.solution h2{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;text-align:center;margin-bottom:1rem}
+.solution-sub{text-align:center;font-size:1.1rem;color:var(--muted);max-width:640px;margin:0 auto 3rem;line-height:1.7}
+.diff-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.diff-item{text-align:center;padding:2rem 1.5rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--surface)}
+.diff-icon{font-size:1.75rem;margin-bottom:.75rem}
+.diff-item h3{font-size:1rem;font-weight:600;margin-bottom:.5rem}
+.diff-item p{font-size:.9rem;color:var(--muted)}
+
+/* TIERS */
+.tiers{background:var(--surface)}
+.tiers h2{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;text-align:center;margin-bottom:.5rem}
+.tiers-sub{text-align:center;color:var(--muted);margin-bottom:3.5rem;font-size:1.05rem}
+.tier-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem}
+.tier-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;display:flex;flex-direction:column;position:relative;transition:border-color .2s}
+.tier-card:hover{border-color:#2a2a32}
+.tier-card.featured{border-color:var(--accent-border)}
+.tier-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--accent);color:var(--bg);font-size:.7rem;font-weight:700;padding:.25rem .8rem;border-radius:20px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.tier-name{font-size:.85rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:.5rem}
+.tier-price{font-size:1.75rem;font-weight:700;margin-bottom:.75rem}
+.tier-price span{font-size:.9rem;font-weight:400;color:var(--muted)}
+.tier-desc{font-size:.9rem;color:var(--muted);line-height:1.65;flex:1;margin-bottom:1.5rem}
+.tier-meta{font-size:.8rem;color:var(--muted);margin-bottom:1rem;padding-top:.75rem;border-top:1px solid var(--border)}
+.btn-tier{display:block;text-align:center;font-size:.85rem;font-weight:600;padding:.7rem 1rem;border-radius:var(--radius);border:1px solid var(--border);color:var(--text);transition:all .2s;background:transparent;cursor:pointer;font-family:inherit}
+.btn-tier:hover{border-color:var(--muted)}
+.btn-tier.gold{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.btn-tier.gold:hover{background:var(--accent-hover)}
+
+/* QUALIFY */
+.qualify h2{font-size:clamp(1.8rem,3vw,2.2rem);font-weight:700;text-align:center;margin-bottom:3rem}
+.qualify-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:800px;margin:0 auto}
+.qualify-col h3{font-size:1rem;font-weight:600;margin-bottom:1.25rem}
+.qualify-col h3.yes{color:var(--accent)}
+.qualify-col h3.no{color:#ef4444}
+.qualify-col ul{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.qualify-col li{font-size:.95rem;color:var(--muted);padding-left:1.5rem;position:relative}
+.qualify-col li::before{content:'';position:absolute;left:0;top:.55rem;width:8px;height:8px;border-radius:50%}
+.qualify-col.for li::before{background:var(--accent)}
+.qualify-col.not li::before{background:#ef4444}
+
+/* CTA */
+.cta-section{background:var(--surface);position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;bottom:-200px;left:50%;transform:translateX(-50%);width:900px;height:500px;background:radial-gradient(ellipse,var(--accent-glow) 0%,transparent 65%);pointer-events:none}
+.cta-section h2{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:700;text-align:center;margin-bottom:1rem}
+.cta-sub{text-align:center;color:var(--muted);max-width:560px;margin:0 auto 2.5rem;font-size:1.05rem;line-height:1.7}
+.form-wrap{max-width:480px;margin:0 auto}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.85rem;font-weight:500;margin-bottom:.4rem}
+.form-group input,.form-group textarea{width:100%;padding:.75rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);color:var(--text);font-family:inherit;font-size:.95rem;transition:border-color .2s;outline:none}
+.form-group input:focus,.form-group textarea:focus{border-color:var(--accent-border)}
+.form-group textarea{resize:vertical;min-height:70px}
+.form-group input::placeholder,.form-group textarea::placeholder{color:#3f3f46}
+.btn-submit{width:100%;padding:1rem;font-size:1rem;margin-top:.5rem}
+
+.success-msg{text-align:center;padding:2rem 0}
+.success-msg h3{font-size:1.3rem;font-weight:700;margin-bottom:.75rem;color:var(--accent)}
+.success-msg p{color:var(--muted);font-size:1rem}
+
+/* FOOTER */
+footer{padding:2.5rem 0;border-top:1px solid var(--border);text-align:center}
+footer p{font-size:.8rem;color:var(--muted)}
+
+/* ANIMATION */
+.anim{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.anim.visible{opacity:1;transform:none}
+.anim-d1{transition-delay:.1s}.anim-d2{transition-delay:.2s}.anim-d3{transition-delay:.3s}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .tier-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .section{padding:4rem 0}
+  .hero{padding:8rem 0 4rem}
+  .pain-grid,.diff-grid{grid-template-columns:1fr}
+  .tier-grid{grid-template-columns:1fr;max-width:400px;margin:0 auto}
+  .qualify-grid{grid-template-columns:1fr;gap:2rem}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-logo">Founder Leverage OS</div>
+    <a href="#cta" class="nav-cta">Get Free Teardown</a>
+  </div>
+</nav>
+
+<main>
+<section class="hero">
+  <div class="container">
+    <p class="hero-eyebrow anim">For agency founders & fractional execs &bull; $30K&ndash;$150K/mo</p>
+    <h1 class="anim anim-d1">You built the revenue.<span>Now it all runs through you.</span></h1>
+    <p class="hero-sub anim anim-d2">Add 2&ndash;3 clients without adding hours or headcount. We install leverage systems inside your existing tools&mdash;so your delivery ops run without you.</p>
+    <a href="#cta" class="btn btn-primary anim anim-d3">Get Your Free Workflow Teardown &rarr;</a>
+    <p class="hero-micro anim anim-d3">Takes 30 seconds. You get a personalized 5-min Loom&mdash;no pitch, no call.</p>
+  </div>
+</section>
+
+<section class="section problem">
+  <div class="container">
+    <div class="section-divider anim"></div>
+    <p class="eyebrow anim" style="text-align:center">The bottleneck</p>
+    <h2 class="anim">You&rsquo;re not lacking clients. You&rsquo;re lacking capacity that doesn&rsquo;t depend on you.</h2>
+    <div class="pain-grid">
+      <div class="pain-card anim">
+        <h3>Every new client = more of your time</h3>
+        <p>You scaled revenue but not capacity. Every client add compounds your calendar, not your margins.</p>
+      </div>
+      <div class="pain-card anim anim-d1">
+        <h3>The process lives in your head</h3>
+        <p>Your team pings you 20 times a day because nothing is documented or systematized. You are the operating system.</p>
+      </div>
+      <div class="pain-card anim anim-d2">
+        <h3>You can&rsquo;t disappear for a week</h3>
+        <p>Vacation means pre-loading work, white-knuckling through spotty Wi-Fi, and catching up on fires when you return.</p>
+      </div>
+      <div class="pain-card anim anim-d3">
+        <h3>Revenue has a ceiling&mdash;and it&rsquo;s you</h3>
+        <p>Not limited by demand. Not limited by talent. Limited by the hours in your day. The math doesn&rsquo;t change until the model does.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section solution">
+  <div class="container">
+    <div class="section-divider anim"></div>
+    <p class="eyebrow anim" style="text-align:center">The fix</p>
+    <h2 class="anim">The Founder Leverage OS</h2>
+    <p class="solution-sub anim">Not a course. Not coaching. Not &ldquo;strategy.&rdquo; We get inside your existing tools and install systems that eliminate you as the bottleneck in delivery.</p>
+    <div class="diff-grid">
+      <div class="diff-item anim">
+        <div class="diff-icon">&curren;</div>
+        <h3>Your tools, not ours</h3>
+        <p>Built inside the stack you already run. No new software. No migration headaches.</p>
+      </div>
+      <div class="diff-item anim anim-d1">
+        <div class="diff-icon">&raquo;</div>
+        <h3>Installed, not taught</h3>
+        <p>We build and deploy the systems for you. You don&rsquo;t watch a course&mdash;you get a working machine.</p>
+      </div>
+      <div class="diff-item anim anim-d2">
+        <div class="diff-icon">&oplus;</div>
+        <h3>Removes you from the loop</h3>
+        <p>Every system is designed with one goal: take you out of the delivery path so the business runs without you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section tiers" id="tiers">
+  <div class="container">
+    <div class="section-divider anim"></div>
+    <p class="eyebrow anim" style="text-align:center">How we work together</p>
+    <h2 class="anim">Four ways in. Start free.</h2>
+    <p class="tiers-sub anim">Every engagement starts with the Workflow Teardown.</p>
+    <div class="tier-grid">
+
+      <div class="tier-card featured anim">
+        <div class="tier-badge">Start here</div>
+        <div class="tier-name">Tier 0</div>
+        <div class="tier-price">Free</div>
+        <p class="tier-desc">The Workflow Teardown&mdash;a personalized 5-min Loom showing exactly where you&rsquo;re bleeding time and money and what to fix first.</p>
+        <div class="tier-meta">Delivered in 48 hours</div>
+        <a href="#cta" class="btn-tier gold">Request Your Teardown &rarr;</a>
+      </div>
+
+      <div class="tier-card anim anim-d1">
+        <div class="tier-name">Tier 1</div>
+        <div class="tier-price">$997</div>
+        <p class="tier-desc">The Leverage Sprint&mdash;one system installed, one bottleneck eliminated. Pick the thing that hurts worst. Done in 7 days.</p>
+        <div class="tier-meta">7 days</div>
+        <a href="#cta" class="btn-tier">Starts with the teardown</a>
+      </div>
+
+      <div class="tier-card anim anim-d2">
+        <div class="tier-name">Tier 2</div>
+        <div class="tier-price">$5K&ndash;$10K</div>
+        <p class="tier-desc">Founder Leverage OS&mdash;your entire delivery ops rebuilt to run without you. Intake, onboarding, fulfillment, QA&mdash;all systematized.</p>
+        <div class="tier-meta">21&ndash;30 days</div>
+        <a href="#cta" class="btn-tier">Starts with the teardown</a>
+      </div>
+
+      <div class="tier-card anim anim-d3">
+        <div class="tier-name">Tier 3</div>
+        <div class="tier-price">$2K&ndash;$5K <span>/mo</span></div>
+        <p class="tier-desc">Leverage Retainer&mdash;ongoing expansion. One new system installed per month. We keep building until delivery runs without you.</p>
+        <div class="tier-meta">Ongoing monthly</div>
+        <a href="#cta" class="btn-tier">Starts with the teardown</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section qualify">
+  <div class="container">
+    <div class="section-divider anim"></div>
+    <p class="eyebrow anim" style="text-align:center">Is this you?</p>
+    <h2 class="anim">This is for operators, not beginners.</h2>
+    <div class="qualify-grid">
+      <div class="qualify-col for anim">
+        <h3 class="yes">This is for you if:</h3>
+        <ul>
+          <li>You run an agency or fractional practice doing $30K&ndash;$150K/mo</li>
+          <li>You have clients and revenue&mdash;but you&rsquo;re stuck in delivery</li>
+          <li>You use tools like ClickUp, Notion, HubSpot, Slack, or similar</li>
+          <li>You want systems installed, not strategy sessions</li>
+        </ul>
+      </div>
+      <div class="qualify-col not anim anim-d1">
+        <h3 class="no">This is NOT for you if:</h3>
+        <ul>
+          <li>You&rsquo;re pre-revenue or still figuring out your offer</li>
+          <li>You want someone to &ldquo;build your business&rdquo; for you</li>
+          <li>You&rsquo;re looking for a course, community, or coaching</li>
+          <li>You&rsquo;re not willing to hand off parts of delivery</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section" id="cta">
+  <div class="container">
+    <div class="section-divider anim"></div>
+    <p class="eyebrow anim" style="text-align:center">Free &bull; No strings</p>
+    <h2 class="anim">Get Your Workflow Teardown</h2>
+    <p class="cta-sub anim">Tell me what you do. I&rsquo;ll record a 5-minute Loom showing exactly where you&rsquo;re bleeding time and money&mdash;and what to fix first.</p>
+    <div class="form-wrap anim">
+      <form id="teardown-form" autocomplete="on">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input type="text" id="name" name="name" required placeholder="Jane Smith">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required placeholder="jane@agency.com">
+        </div>
+        <div class="form-group">
+          <label for="agency">What does your agency / practice do?</label>
+          <textarea id="agency" name="agency" required placeholder="e.g. We run paid media for DTC brands doing $1M-$10M"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-submit">Send My Free Teardown &rarr;</button>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Founder Leverage OS. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+}, { threshold: 0.15 });
+document.querySelectorAll('.anim').forEach(el => obs.observe(el));
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+}, { passive: true });
+
+document.getElementById('teardown-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const data = Object.fromEntries(new FormData(this));
+
+  // ── Wire this to your n8n webhook or Supabase ──
+  // fetch('https://YOUR-N8N-INSTANCE/webhook/teardown', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json' },
+  //   body: JSON.stringify(data)
+  // });
+
+  this.innerHTML = '<div class="success-msg"><h3>You’re in.</h3><p>Check your inbox in the next 48 hours for your personalized Workflow Teardown Loom.</p></div>';
+});
+</script>
+</body>
+</html>
