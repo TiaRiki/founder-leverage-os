@@ -154,19 +154,35 @@ footer p{font-size:.8rem;color:var(--muted);letter-spacing:.02em}
 </main>
 
 <script>
-document.getElementById('scale-form').addEventListener('submit', function(e) {
+const SUPABASE_URL = 'https://svwjbdzttjilkwyokler.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN2d2piZHp0dGppbGt3eW9rbGVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkyNDExMjYsImV4cCI6MjA5NDgxNzEyNn0.lIvI4eG4NWdh-cHPbQl9Vzcvt4QyFWrSENFLyxXk1NE';
+
+document.getElementById('scale-form').addEventListener('submit', async function(e) {
   e.preventDefault();
+  const btn = this.querySelector('button');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+
   const data = Object.fromEntries(new FormData(this));
-  console.log('SCALE form submission:', data);
 
-  // POST to your webhook when ready:
-  // fetch('https://YOUR-WEBHOOK-URL', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify(data)
-  // });
-
-  this.innerHTML = '<div class="success"><h3>Check your inbox.</h3><p>Your SCALE Score is on the way.</p></div>';
+  try {
+    const res = await fetch(SUPABASE_URL + '/rest/v1/scale_leads', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ email: data.email, url: data.website })
+    });
+    if (!res.ok) throw new Error('Submit failed');
+    this.innerHTML = '<div class="success"><h3>Check your inbox in 24 hours.</h3><p>Your SCALE Score is being built right now.</p></div>';
+  } catch (err) {
+    btn.textContent = 'Show Me Where I’m Stuck';
+    btn.disabled = false;
+    alert('Something went wrong. Please try again.');
+  }
 });
 </script>
 </body>
